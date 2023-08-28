@@ -17,5 +17,7 @@ public class HealthBar : MonoBehaviour
     private void LateUpdate()
     {
         slider.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up);
+        if(slider.transform.position.z<0) slider.gameObject.SetActive(false);
+        else slider.gameObject.SetActive(true);
     }
 }

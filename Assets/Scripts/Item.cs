@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
     private void LateUpdate()
     {
         //ui.transform.LookAt(_camera);
-        ui.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up);
+        ui.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up*0.5f);
     }
 
     private void OnTriggerEnter(Collider other)
