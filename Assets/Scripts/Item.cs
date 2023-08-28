@@ -23,6 +23,8 @@ public class Item : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact")&&ui.activeSelf)
         {
+            ItemManager.instance.amount += amount;
+            Destroy(transform.parent.gameObject);
             //Debug.Log("pickup");
         }
     }
@@ -31,7 +33,7 @@ public class Item : MonoBehaviour
     private void LateUpdate()
     {
         //ui.transform.LookAt(_camera);
-        ui.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position);
+        ui.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up);
     }
 
     private void OnTriggerEnter(Collider other)
