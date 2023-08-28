@@ -9,7 +9,7 @@ public class hpcount : MonoBehaviour
 {
     public Slider healthSlider;  // Slider UI 요소
     public float maxHP = 100;       // 최대 체력
-    private float currentHP;        // 현재 체력
+    public float currentHP;        // 현재 체력
     [SerializeField] private Text hptxt;
     public float MobDamage = 18f;
 
