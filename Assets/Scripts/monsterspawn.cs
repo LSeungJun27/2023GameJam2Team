@@ -8,19 +8,28 @@ public class monsterspawn : MonoBehaviour
     public GameObject spawnableObject;
     [Header("spawn interval")]
     public float spawnInterval = 3f;
-    public float radius = 7f;
+    public float radius = 3f;
+
 
     private float timer = 0f;
+
+    private GameObject player;
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Target");
+    }
+
+
     void Update()
     {
-        Vector3 playerPosition = transform.position;
-        
+        Vector3 playerPosition = player.transform.position;
 
-        float a = playerPosition.x;
-        float b = playerPosition.z;
-        float rx = Random.Range(-radius + a, radius + a);
-        float rz = Random.Range(-radius + b, radius + b);
-        Vector3 randomPosition = new Vector3(rx, 1, rz);
+        float randomAngle = Random.Range(0f, Mathf.PI * 2f);
+        Vector3 randomPosition = new Vector3(Mathf.Cos(randomAngle), 2, Mathf.Sin(randomAngle)) * radius;
+        randomPosition += playerPosition;
+
+
 
         if (timer <= 0f)
         {

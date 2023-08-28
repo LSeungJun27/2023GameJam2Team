@@ -8,6 +8,8 @@ public class monstermove : MonoBehaviour
     public float speed = 2f;
     [Header("target")]
     public GameObject target;
+    public float gravity = 500f;
+    Vector3 direction;
 
 
     void Start()
@@ -23,6 +25,7 @@ public class monstermove : MonoBehaviour
             Vector3 direction = (target.transform.position - transform.position).normalized;
             transform.Translate(speed * Time.deltaTime * direction);
         }
+        direction.y -= gravity * Time.deltaTime;
     }
 
 
