@@ -6291,18 +6291,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bead1306bb3611044b8a0fda4fb14068, type: 3}
---- !u!114 &1671343499 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3944733429565261970, guid: d32f9a1dd07be844f84ee48abc14a9bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1726634287}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1676086586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6988539274986778240, guid: bead1306bb3611044b8a0fda4fb14068,
@@ -6680,12 +6668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2acecc8f15c5c246a1139a26dc32379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  maxHP: 100
   hptxt: {fileID: 1123134455}
-  hp: 50
-  maxhp: 100
   MobDamage: 17
-  barImage: {fileID: 1671343499}
-  lifes: []
 --- !u!114 &1738527570
 MonoBehaviour:
   m_ObjectHideFlags: 0
