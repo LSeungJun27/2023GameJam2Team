@@ -10,13 +10,17 @@ public class boombaya : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Target"))
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
-        
+        if (other.gameObject.CompareTag("Weapon"))
+        {
+            Destroy(this.gameObject);
+        }
+
 
     }
 }
