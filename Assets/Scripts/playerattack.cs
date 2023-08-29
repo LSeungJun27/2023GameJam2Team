@@ -6,9 +6,11 @@ public class playerattack : MonoBehaviour
 {
     Animator AtkAnim;
     public ParticleSystem fireEffect;
-    private float atktime = 0.0f;
+    //private float atktime = 0.0f;
     public float maxatktime = 2.0f;
     public float cooltime = 1.0f;
+
+    public AudioSource FireBlast;
 
     private int youcanatk = 1;
 
@@ -17,7 +19,9 @@ public class playerattack : MonoBehaviour
     void Start()
     {
         AtkAnim = GetComponent<Animator>();
+        FireBlast = GameObject.Find("FireBlast").GetComponent<AudioSource>();
         fireEffect.Stop();
+        FireBlast.Stop();
 
 
     }
@@ -35,14 +39,15 @@ public class playerattack : MonoBehaviour
                 {
                     GameManager.instance.playerHpcount.currentHP -= amount;
                     AtkAnim.SetTrigger("Attack");
+
+
                     fireEffect.Play();
-                
+                    FireBlast.Play();
+                    FireBlast.UnPause();
+
                     Debug.Log("น฿ป็");
                 }
-                else
-                {
-                    fireEffect.Stop();
-                }
+               
                 
             }else if (Input.GetMouseButton(0))
             {
@@ -50,11 +55,16 @@ public class playerattack : MonoBehaviour
                 if (GameManager.instance.playerHpcount.currentHP > amount)
                 {
                     GameManager.instance.playerHpcount.currentHP -= amount;
-                }else
-                {
-                    fireEffect.Stop();
                 }
                 
+
+            }
+
+            else if (Input.GetMouseButtonUp(0))
+            {
+                fireEffect.Stop();
+                FireBlast.Pause();
+
             }
             /*
             if (Input.GetMouseButtonDown(0))
@@ -83,11 +93,7 @@ public class playerattack : MonoBehaviour
             }
             */
 
-            else if (Input.GetMouseButtonUp(0))
-            {
-                fireEffect.Stop();
-                
-            }
+
             /*
             if (atktime >= 0)
             {
