@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
         public CinemachineVirtualCamera inGameCam;
         public UnityEvent onStart;
         public bool gameStart = false;
+        public hpcount playerHpcount;
+        public hpcount cartHpcount;
         
         private void Awake()
         {

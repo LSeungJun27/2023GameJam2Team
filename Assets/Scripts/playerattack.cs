@@ -24,23 +24,47 @@ public class playerattack : MonoBehaviour
 
     void Update()
     {
+        var amount = 10 * Time.deltaTime;
         if (youcanatk == 1)
         {
+            
             if (Input.GetMouseButtonDown(0))
             {
-                noatk = cooltime;
-                AtkAnim.SetTrigger("Attack");
-                fireEffect.Play();
+                //noatk = cooltime;
+                if (GameManager.instance.playerHpcount.currentHP > amount)
+                {
+                    GameManager.instance.playerHpcount.currentHP -= amount;
+                    AtkAnim.SetTrigger("Attack");
+                    fireEffect.Play();
                 
-                Debug.Log("발사");
+                    Debug.Log("발사");
+                }
+                else
+                {
+                    fireEffect.Stop();
+                }
+                
+            }else if (Input.GetMouseButton(0))
+            {
+                
+                if (GameManager.instance.playerHpcount.currentHP > amount)
+                {
+                    GameManager.instance.playerHpcount.currentHP -= amount;
+                }else
+                {
+                    fireEffect.Stop();
+                }
+                
             }
+            /*
             if (Input.GetMouseButtonDown(0))
             {
                 fireEffect.Play();
             }
+            */
 
 
-
+            /*
                 if (Input.GetMouseButton(0))
             {
                 
@@ -55,20 +79,25 @@ public class playerattack : MonoBehaviour
                     youcanatk = 0;
                     Debug.Log("과열");
                 }
+                
             }
+            */
 
-            if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0))
             {
                 fireEffect.Stop();
                 
             }
+            /*
             if (atktime >= 0)
             {
                 atktime -= Time.deltaTime * 2.0f;
                 Debug.Log(atktime);
                 Debug.Log("감소중");
             }
+            */
         }
+        /*
         else if (youcanatk == 0)
         {
             if (noatk <= 0)
@@ -78,6 +107,7 @@ public class playerattack : MonoBehaviour
             }
             noatk -= Time.deltaTime;
         }
+        */
     }
 
 

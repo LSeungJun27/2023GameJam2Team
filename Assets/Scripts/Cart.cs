@@ -1,15 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour
+public class Cart : MonoBehaviour
 {
-
     public GameObject ui;
     private Camera _camera;
-    public float amount;
+    public hpcount hpcount;
 
     private void Start()
     {
@@ -21,13 +19,26 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Interact")&&ui.activeSelf)
+        if (Input.GetButton("Interact")&&ui.activeSelf)
         {
-            //ItemManager.instance.amount += amount;
-            GameManager.instance.playerHpcount.currentHP += amount;
-            if (GameManager.instance.playerHpcount.currentHP > GameManager.instance.playerHpcount.maxHP)
-                GameManager.instance.playerHpcount.currentHP=GameManager.instance.playerHpcount.maxHP;
-            Destroy(transform.parent.gameObject);
+            var playerHpcount = GameManager.instance.playerHpcount;
+            if (playerHpcount.currentHP > 20 * Time.deltaTime)
+            {
+                hpcount.currentHP += 20*Time.deltaTime;
+                playerHpcount.currentHP-= 20*Time.deltaTime;
+            }
+            else
+            {
+                hpcount.currentHP += playerHpcount.currentHP;
+                playerHpcount.currentHP= 0;
+            }
+            if (hpcount.currentHP > hpcount.maxHP)
+            {
+                playerHpcount.currentHP += hpcount.currentHP - hpcount.maxHP;
+                hpcount.currentHP = hpcount.maxHP;
+            }
+
+            //Destroy(transform.parent.gameObject);
             //Debug.Log("pickup");
         }
     }

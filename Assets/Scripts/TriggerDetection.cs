@@ -11,7 +11,7 @@ public class TriggerDetection : MonoBehaviour
 
     private void Start()
     {
-        monsterspawn.instance.onEnemySpawn.AddListener((obj) => { ps.trigger.AddCollider(obj.GetComponent<Collider>()); });
+        //monsterspawn.instance.onEnemySpawn.AddListener((obj) => { ps.trigger.AddCollider(obj.GetComponent<Collider>()); });
     }
 
     private void OnParticleCollision(GameObject other)

@@ -6,7 +6,7 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
 
-    public int amount = 0;
+    public float amount = 0;
     // Start is called before the first frame update
     void Awake()
     {
