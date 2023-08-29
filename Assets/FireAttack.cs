@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class FireAttack : StateMachineBehaviour
 {
     // 여기에 파티클 시스템 변수 선언
