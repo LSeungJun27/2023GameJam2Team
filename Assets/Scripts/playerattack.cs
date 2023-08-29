@@ -6,31 +6,80 @@ public class playerattack : MonoBehaviour
 {
     Animator AtkAnim;
     public ParticleSystem fireEffect;
-    
+    private float atktime = 0.0f;
+    public float maxatktime = 2.0f;
+    public float cooltime = 1.0f;
+
+    private int youcanatk = 1;
+
+    private float noatk;
 
     void Start()
     {
         AtkAnim = GetComponent<Animator>();
         fireEffect.Stop();
+
+
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (youcanatk == 1)
         {
-            AtkAnim.SetTrigger("Attack");
-            
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                noatk = cooltime;
+                AtkAnim.SetTrigger("Attack");
+                fireEffect.Play();
+                
+                Debug.Log("발사");
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                fireEffect.Play();
+            }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            fireEffect.Play();
+
+
+                if (Input.GetMouseButton(0))
+            {
+                
+                atktime += Time.deltaTime * 4.0f;
+
+                Debug.Log(atktime);
+                Debug.Log("증가중");
+
+                if (atktime >= maxatktime)
+                {
+                    fireEffect.Stop();
+                    youcanatk = 0;
+                    Debug.Log("과열");
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                fireEffect.Stop();
+                
+            }
+            if (atktime >= 0)
+            {
+                atktime -= Time.deltaTime * 2.0f;
+                Debug.Log(atktime);
+                Debug.Log("감소중");
+            }
         }
-        if(Input.GetMouseButtonUp(0))
+        else if (youcanatk == 0)
         {
-            fireEffect.Stop();
+            if (noatk <= 0)
+            {
+                youcanatk = 1; // 다시 공격 가능 상태로 변경
+                atktime = 0.0f;
+            }
+            noatk -= Time.deltaTime;
         }
     }
 
-    
+
+
 }

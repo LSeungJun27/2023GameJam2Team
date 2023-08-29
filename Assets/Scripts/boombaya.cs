@@ -25,11 +25,11 @@ public class boombaya : MonoBehaviour
         }
 
     }
-        void OnParticleTrigger()
+        //void OnParticleTrigger()
 
-        {
-        Debug.Log("충돌함");
-        }
+        //{
+        //Debug.Log("충돌함");
+        //}
         
 
 
