@@ -4,26 +4,44 @@ using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
 {
-    public ParticleSystem attackParticle;
+    public GameObject effectPrefab; 
+    public float effectDuration = 0.5f; 
 
-    private Animator animator;
-
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
+    private bool isClicking = false; 
+    private float clickStartTime = 0f; 
+    private GameObject currentEffect; 
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("Attack");
-            PlayAttackParticle();
-        }
-    }
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-    void PlayAttackParticle()
-    {
-        attackParticle.Play(); // 파티클 시스템 활성화
+            if (player != null)
+            {
+                Vector3 playerPosition = player.transform.position;
+
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 direction = (mousePosition - playerPosition).normalized;
+                Vector3 effectPos = playerPosition + direction;
+
+                if (currentEffect != null)
+                {
+                    Destroy(currentEffect);
+                }
+
+                currentEffect = Instantiate(effectPrefab, effectPos, Quaternion.identity);
+
+                isClicking = true;
+                clickStartTime = Time.time;
+            }
+        }
+
+        if (isClicking && Time.time - clickStartTime >= effectDuration)
+        {
+            Destroy(currentEffect);
+            isClicking = false;
+            currentEffect = null;
+        }
     }
 }
