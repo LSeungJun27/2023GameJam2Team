@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class hpcount : MonoBehaviour
 {
-    public Slider healthSlider;  // Slider UI 요소
+    //public Slider healthSlider;  // Slider UI 요소
     public float maxHP = 100;       // 최대 체력
     public float currentHP;        // 현재 체력
     [SerializeField] private Text hptxt;
@@ -16,8 +16,8 @@ public class hpcount : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
-        healthSlider.maxValue = maxHP;
-        healthSlider.value = currentHP;
+        //healthSlider.maxValue = maxHP;
+        //healthSlider.value = currentHP;
     }
 
     public void TakeDamage(int damageAmount)
@@ -29,7 +29,7 @@ public class hpcount : MonoBehaviour
             currentHP = 0;
         }
 
-        healthSlider.value = currentHP;
+        //healthSlider.value = currentHP;
 
         if (currentHP <= 0)
         {

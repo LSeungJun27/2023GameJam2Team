@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
 
         entity=entity ? entity : transform.parent.gameObject;
 
-        _hpcount = entity.GetComponent<hpcount>();
+        entity.TryGetComponent(out _hpcount);
 
     }
     
@@ -27,7 +27,11 @@ public class HealthBar : MonoBehaviour
         slider.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up);
         if(slider.transform.position.z<0) slider.gameObject.SetActive(false);
         else slider.gameObject.SetActive(true);
-        slider.value = _hpcount.currentHP;
-        slider.maxValue = _hpcount.maxHP;
+        if (_hpcount)
+        {
+            slider.value = _hpcount.currentHP;
+            slider.maxValue = _hpcount.maxHP;
+        }
+        
     }
 }

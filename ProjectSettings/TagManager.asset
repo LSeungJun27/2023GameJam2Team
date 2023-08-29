@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - enemy
-  - Target
-  - FxTemporaire
   - Weapon
+  - enemy
   layers:
   - Default
   - TransparentFX

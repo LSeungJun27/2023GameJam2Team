@@ -5,6 +5,8 @@ using UnityEngine;
 public class playerattack : MonoBehaviour
 {
     Animator AtkAnim;
+    public ParticleSystem fireEffect;
+    
 
     void Start()
     {
@@ -16,6 +18,16 @@ public class playerattack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             AtkAnim.SetTrigger("Attack");
+            
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            fireEffect.Play();
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            fireEffect.Stop();
         }
     }
 
