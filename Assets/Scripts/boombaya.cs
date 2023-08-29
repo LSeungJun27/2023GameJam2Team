@@ -2,10 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 기존의 collider 스크립트dlqslek.
+// 엄청 많은 코드가 거쳐갔지만, 원래 있던 거 쓰셔도 될듯 합니다.
 
 public class boombaya : MonoBehaviour
 {
+    public ParticleSystem waterDamage; // 이펙트 프리팹을 Inspector에서 할당
+    public GameObject Damage;  
+
+    void Start()
+    {
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        showEffect(collision);
+    }
+
+
+    void showEffect(Collision coll)
+    {
+        ContactPoint contact = coll.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(-Vector3.forward, contact.normal);
+        GameObject fountain = Instantiate(Damage, contact.point, rot);
+        fountain.transform.SetParent(this.transform);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Target"))
@@ -19,19 +39,15 @@ public class boombaya : MonoBehaviour
 
 
 
-        if (other.gameObject.CompareTag("Weapon"))
-        {
-            Destroy(this.gameObject);
-        }
 
     }
-        //void OnParticleTrigger()
+    //void OnParticleTrigger()
 
-        //{
-        //Debug.Log("충돌함");
-        //}
-        
+    //{
+    //Debug.Log("충돌함");
+    //}
 
 
-    
+
+
 }
