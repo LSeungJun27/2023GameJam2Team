@@ -16,21 +16,22 @@ public class boombaya : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+
+
         if (other.gameObject.CompareTag("Weapon"))
         {
             Destroy(this.gameObject);
         }
 
     }
-        void OnParticleCollision(GameObject other)
+        void OnParticleTrigger()
 
         {
-            if (other.gameObject.CompareTag("Weapon"))
-            {
-                Destroy(this.gameObject);
-            }
+        Debug.Log("Ãæµ¹ÇÔ");
+        }
         
 
 
-    }
+    
 }

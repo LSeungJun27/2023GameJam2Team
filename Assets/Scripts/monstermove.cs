@@ -29,20 +29,20 @@ public class monstermove : MonoBehaviour
         float z = direction.z;
 
 
-        if (direction != Vector3.zero)
-        {
-            // 진행 방향으로 캐릭터 회전
-            transform.rotation = Quaternion.Euler(0, Mathf.Atan2(x, z) * Mathf.Rad2Deg, 0);
-            anim.SetFloat("Speed", anispeed);
-        }
-        if (direction == Vector3.zero)
-        {
-            anim.SetFloat("Speed", 0);
-        }
+        //if (direction != Vector3.zero)
+        //{
+        //    // 진행 방향으로 캐릭터 회전
+        //    transform.rotation = Quaternion.Euler(0, Mathf.Atan2(x, z) * Mathf.Rad2Deg, 0);
+        //    anim.SetFloat("Speed", anispeed);
+        //}
+        //if (direction == Vector3.zero)
+        //{
+        //    anim.SetFloat("Speed", 0);
+        //}
 
 
         direction.y -= gravity * Time.deltaTime;
-        cc.Move(direction * Time.deltaTime);
+        //cc.Move(direction * Time.deltaTime);
     }
 
     void MoveToTarget()
