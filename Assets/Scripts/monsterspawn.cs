@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class monsterspawn : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class monsterspawn : MonoBehaviour
     [Header("spawn interval")]
     public float spawnInterval = 3f;
     public float radius = 3f;
+
+    [SerializeField] public Text Scoretxt;
+    private float YouScore;
+    private int RealScore;
 
     public UnityEvent<GameObject> onEnemySpawn;
 
@@ -31,6 +36,7 @@ public class monsterspawn : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Target");
+        YouScore = 0;
     }
 
 
@@ -52,5 +58,26 @@ public class monsterspawn : MonoBehaviour
             onEnemySpawn.Invoke(tmp);
         }
         timer -= Time.deltaTime;
+
+
+        //Á¡¼ö
+        YouScore += Time.deltaTime;
+        RealScore = Mathf.FloorToInt(YouScore);
+        Scoretxt.text = "Score : " + RealScore.ToString();
+
+
+
     }
+    
+
+
+
+
+
+
+
 }
+
+
+
+
