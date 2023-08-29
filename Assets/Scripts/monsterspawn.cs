@@ -26,7 +26,7 @@ public class monsterspawn : MonoBehaviour
         Vector3 playerPosition = player.transform.position;
 
         float randomAngle = Random.Range(0f, Mathf.PI * 2f);
-        Vector3 randomPosition = new Vector3(Mathf.Cos(randomAngle), 2, Mathf.Sin(randomAngle)) * radius;
+        Vector3 randomPosition = new Vector3(Mathf.Cos(randomAngle) * radius, 1, Mathf.Sin(randomAngle) * radius);
         randomPosition += playerPosition;
 
 

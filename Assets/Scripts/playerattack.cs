@@ -11,6 +11,7 @@ public class playerattack : MonoBehaviour
     void Start()
     {
         AtkAnim = GetComponent<Animator>();
+        fireEffect.Stop();
     }
 
     void Update()
@@ -29,6 +30,7 @@ public class playerattack : MonoBehaviour
         {
             fireEffect.Stop();
         }
+
     }
 
     
