@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,20 @@ public class boombaya : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        showEffect(collision);
+        //Debug.Log("asdfasdfasdf");
+        //showEffect(collision);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.onEnemyDie.Invoke();
+        GameObject fountain = Instantiate(Damage,transform);
+        fountain.transform.parent = null;
     }
 
 
@@ -25,7 +39,7 @@ public class boombaya : MonoBehaviour
         GameObject fountain = Instantiate(Damage, contact.point, rot);
         fountain.transform.SetParent(this.transform);
     }
-
+/*
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Target"))
@@ -40,7 +54,7 @@ public class boombaya : MonoBehaviour
 
 
 
-    }
+    }*/
     //void OnParticleTrigger()
 
     //{

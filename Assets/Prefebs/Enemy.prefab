@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 1824639969271540894}
   - component: {fileID: 5712723896445789382}
   - component: {fileID: -54397730037957051}
+  - component: {fileID: 2455753894609799834}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: enemy
@@ -220,7 +221,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4925869040135891239}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.29
+  m_Radius: 0.21
   m_Speed: 0.5
   m_Acceleration: 20
   avoidancePriority: 50
@@ -229,7 +230,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.5
+  m_Height: 0.4
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -277,6 +278,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bcdb9b8dde37949b8f838549b17929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterDamage: {fileID: 19800000, guid: 188d30abdf930ad4fb0177c69895f675, type: 3}
+  Damage: {fileID: 100000, guid: 188d30abdf930ad4fb0177c69895f675, type: 3}
+--- !u!54 &2455753894609799834
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925869040135891239}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5471469803953219084
 GameObject:
   m_ObjectHideFlags: 0
