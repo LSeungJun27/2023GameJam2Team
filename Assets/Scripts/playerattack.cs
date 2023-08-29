@@ -30,7 +30,6 @@ public class playerattack : MonoBehaviour
         {
             fireEffect.Stop();
         }
-
     }
 
     

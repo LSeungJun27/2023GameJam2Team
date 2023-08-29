@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class monsterspawn : MonoBehaviour
 {
@@ -10,10 +14,19 @@ public class monsterspawn : MonoBehaviour
     public float spawnInterval = 3f;
     public float radius = 3f;
 
+    public UnityEvent<GameObject> onEnemySpawn;
+
 
     private float timer = 0f;
 
     private GameObject player;
+
+    public static monsterspawn instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -34,7 +47,9 @@ public class monsterspawn : MonoBehaviour
         if (timer <= 0f)
         {
             timer = spawnInterval;
-            Instantiate(spawnableObject, randomPosition, Quaternion.identity);
+            GameObject tmp=Instantiate(spawnableObject, randomPosition, Quaternion.identity);
+            tmp.GetComponent<EnemyAi>().waypoints.Add(player.transform);
+            onEnemySpawn.Invoke(tmp);
         }
         timer -= Time.deltaTime;
     }

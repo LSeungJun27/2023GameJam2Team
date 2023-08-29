@@ -16,15 +16,19 @@ public class HealthBar : MonoBehaviour
     {
         _camera = Camera.main;
 
-        entity=entity ? entity : transform.parent.gameObject;
+        entity = entity ? entity : transform.parent.gameObject;
 
         entity.TryGetComponent(out _hpcount);
 
+        transform.parent = GameManager.instance.transform;
+        
+        slider.gameObject.SetActive(false);
     }
     
     private void LateUpdate()
     {
-        slider.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up);
+        if (!GameManager.instance.gameStart) return;
+        slider.transform.position = _camera.WorldToScreenPoint(entity.transform.position+Vector3.up*0.7f);
         if(slider.transform.position.z<0) slider.gameObject.SetActive(false);
         else slider.gameObject.SetActive(true);
         if (_hpcount)

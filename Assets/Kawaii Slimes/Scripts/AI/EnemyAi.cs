@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public enum SlimeAnimationState { Idle,Walk,Jump,Attack,Damage}
@@ -11,7 +12,7 @@ public class EnemyAi : MonoBehaviour
    
     public Animator animator;
     public NavMeshAgent agent;
-    public Transform[] waypoints;
+    public List<Transform> waypoints;
     public int damType;
 
     private int m_CurrentWaypointIndex;
@@ -32,7 +33,7 @@ public class EnemyAi : MonoBehaviour
     public void WalkToNextDestination()
     {
         currentState = SlimeAnimationState.Walk;
-        m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+        m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Count;
         agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         SetFace(faces.WalkFace);
     }
