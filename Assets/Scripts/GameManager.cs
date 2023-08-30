@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private float YouScore;
     private int RealScore;
     private int KillScore = 0;
-    public int killbonus = 2;
+    public int killbonus = 10;
 
         private void Awake()
         {
@@ -66,15 +66,14 @@ public class GameManager : MonoBehaviour
     //점수
     public void ScoreCount()
     {
-        if (GameManager.instance.gameStart) YouScore += Time.deltaTime;
-        int Ks = GetComponent<GameManager>().KillScore;
+        if (gameStart) YouScore += Time.deltaTime;
         RealScore = Mathf.FloorToInt(YouScore) + KillScore;
         if (RealScore > bestscore)
         {
             PlayerPrefs.SetInt(KeyName, RealScore);
             bestscore = RealScore;
         }
-        Scoretxt.text = "Score : " + RealScore.ToString();
+        Scoretxt.text = "Score : " + RealScore;
         BestScroetxt.text = bestscore.ToString();
     }
         
