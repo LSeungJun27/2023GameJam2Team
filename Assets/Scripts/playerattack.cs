@@ -21,6 +21,7 @@ public class playerattack : MonoBehaviour
         AtkAnim = GetComponent<Animator>();
         FireBlast = GameObject.Find("FireBlast").GetComponent<AudioSource>();
         fireEffect.Stop();
+        FireBlast.loop = true;
         FireBlast.Stop();
 
 
@@ -57,7 +58,7 @@ public class playerattack : MonoBehaviour
                 {
                     GameManager.instance.playerHpcount.currentHP -= amount;
                 }
-                
+                FireBlast.UnPause();
 
             }
 
