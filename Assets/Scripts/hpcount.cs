@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 
 
@@ -52,9 +53,22 @@ public class hpcount : MonoBehaviour
     }
     void Update()
     {
+        if (GameOver.Instance != null)
+        {
+            if (currentHP <= 0)
+            {
+                GameOver.Instance.SetGameOver();
+
+            }
+        }
         if (hptxt != null)
         {
             hptxt.text = currentHP.ToString();
+        }
+        if (currentHP <= 0)
+        {
+            Destroy(player.gameObject);
+            Destroy(gameObject);
         }
     }
 }
