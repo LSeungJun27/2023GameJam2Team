@@ -10,13 +10,12 @@ public class TerrainGenerator : MonoBehaviour
     public CinemachineDollyCart cart;
     public Vector2 mapSize;
     public Vector3 testV;
-    [ContextMenu("Generate Map")]
     private void GenerateMap()
     {
         SetTrackPath();
     }
     
-
+    [ContextMenu("Set Track Path")]
     void SetTrackPath()
     {
         int waypointCount = 25;
@@ -39,5 +38,10 @@ public class TerrainGenerator : MonoBehaviour
             wp.position = new Vector3(v.x,0f,v.y);
             return wp;
         }
+    }
+
+    void GenerateItem()
+    {
+        
     }
 }
