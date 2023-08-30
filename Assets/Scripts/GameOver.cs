@@ -37,7 +37,7 @@ public class GameOver : MonoBehaviour
 
     public void StartNewGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main_Copy");
     }
 
 }
