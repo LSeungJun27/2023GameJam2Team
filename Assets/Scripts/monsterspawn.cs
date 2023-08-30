@@ -40,6 +40,11 @@ public class monsterspawn : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Target");
+            return;
+        }
         Vector3 playerPosition = player.transform.position;
 
         float randomAngle = Random.Range(0f, Mathf.PI * 2f);
