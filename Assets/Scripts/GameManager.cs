@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
         public hpcount playerHpcount;
         public hpcount cartHpcount;
 
+    //점수
+    public Text BestScroetxt;
+    public int bestscore = 0;
+    private string KeyName = "Best";
     [SerializeField] public Text Scoretxt;
     private float YouScore;
     private int RealScore;
@@ -31,13 +35,27 @@ public class GameManager : MonoBehaviour
             instance = this;
             _camera = Camera.main;
             brain = _camera.GetComponent<CinemachineBrain>();
-            onStart.AddListener(() => { gameStart = true;});
+            cartHpcount.gameObject.SetActive(false);
+            Scoretxt.gameObject.SetActive(false);
+            onStart.AddListener(() =>
+            {
+                gameStart = true;
+                Scoretxt.gameObject.SetActive(true);
+                cartHpcount.gameObject.SetActive(true);
+            });
             onEnemyDie.AddListener(() =>
             {
                 Kill();
             });
-        }
         
+        //점수
+        bestscore = PlayerPrefs.GetInt(KeyName, 0);
+        BestScroetxt.text = bestscore.ToString();
+
+
+        }
+      
+    //점수
     public void Kill()
     {
         KillScore += killbonus;
@@ -45,25 +63,33 @@ public class GameManager : MonoBehaviour
         //Debug.Log(KillScore);
     }
 
+    //점수
     public void ScoreCount()
     {
-        //점수
-        YouScore += Time.deltaTime;
+        if (GameManager.instance.gameStart) YouScore += Time.deltaTime;
         int Ks = GetComponent<GameManager>().KillScore;
         RealScore = Mathf.FloorToInt(YouScore) + KillScore;
+        if (RealScore > bestscore)
+        {
+            PlayerPrefs.SetInt(KeyName, RealScore);
+            bestscore = RealScore;
+        }
         Scoretxt.text = "Score : " + RealScore.ToString();
+        BestScroetxt.text = bestscore.ToString();
     }
         
 
         // Start is called before the first frame update
     void Start()
     {
+        //점수
             YouScore = 0;
     }
 
         // Update is called once per frame
     void Update()
     {
+        //점수
         ScoreCount();
     }
 } 

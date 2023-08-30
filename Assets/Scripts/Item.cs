@@ -10,13 +10,15 @@ public class Item : MonoBehaviour
     public GameObject ui;
     private Camera _camera;
     public float amount;
+    public AudioSource GetItem;
 
     private void Start()
     {
         _camera = Camera.main;
         
         ui.SetActive(false);
-        
+        //GetItem = GameObject.Find("GetItem").GetComponent<AudioSource>();
+        //GetItem.Stop();
     }
 
     private void Update()
@@ -27,8 +29,10 @@ public class Item : MonoBehaviour
             GameManager.instance.playerHpcount.currentHP += amount;
             if (GameManager.instance.playerHpcount.currentHP > GameManager.instance.playerHpcount.maxHP)
                 GameManager.instance.playerHpcount.currentHP=GameManager.instance.playerHpcount.maxHP;
+            GetItem.enabled = true;
+            GetItem.gameObject.transform.parent = null;
             Destroy(transform.parent.gameObject);
-            //Debug.Log("pickup");
+            Debug.Log("pickup");
         }
     }
 

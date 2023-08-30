@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement class="title" style="flex-grow: 1; visibility: visible;">
-        <ui:Button text="시작" display-tooltip-when-elided="true" class="btn_start" style="width: 226px; height: 72px; position: absolute; left: 0; bottom: 0;" />
-        <ui:Label text="불 지키기" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 93px; position: absolute; left: 0; top: 0;" />
+        <ui:Button text="start" display-tooltip-when-elided="true" class="btn_start" style="width: 226px; height: 72px; position: absolute; left: 0; bottom: 0;" />
+        <ui:Label text="Protect Fire" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 93px; position: absolute; left: 0; top: 0;" />
+        <ui:Button text="reset" display-tooltip-when-elided="true" class="btn_reset" style="width: 226px; height: 72px; position: absolute; left: auto; bottom: 0; right: 0;" />
     </ui:VisualElement>
 </ui:UXML>

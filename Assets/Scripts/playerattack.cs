@@ -6,9 +6,11 @@ public class playerattack : MonoBehaviour
 {
     Animator AtkAnim;
     public ParticleSystem fireEffect;
-    private float atktime = 0.0f;
+    //private float atktime = 0.0f;
     public float maxatktime = 2.0f;
     public float cooltime = 1.0f;
+
+    public AudioSource FireBlast;
 
     private int youcanatk = 1;
 
@@ -17,44 +19,60 @@ public class playerattack : MonoBehaviour
     void Start()
     {
         AtkAnim = GetComponent<Animator>();
+        FireBlast = GameObject.Find("FireBlast").GetComponent<AudioSource>();
         fireEffect.Stop();
+        FireBlast.loop = true;
+        FireBlast.Stop();
 
 
     }
 
     void Update()
     {
+        if (!GameManager.instance.gameStart) return;
         var amount = 10 * Time.deltaTime;
         if (youcanatk == 1)
         {
             
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetButtonDown("Fire1"))
             {
                 //noatk = cooltime;
                 if (GameManager.instance.playerHpcount.currentHP > amount)
                 {
                     GameManager.instance.playerHpcount.currentHP -= amount;
                     AtkAnim.SetTrigger("Attack");
+
+
                     fireEffect.Play();
-                
+                    FireBlast.Play();
+                    FireBlast.UnPause();
+
                     Debug.Log("น฿ป็");
                 }
-                else
-                {
-                    fireEffect.Stop();
-                }
+               
                 
-            }else if (Input.GetMouseButton(0))
+            }else if (Input.GetButton("Fire1"))
             {
                 
                 if (GameManager.instance.playerHpcount.currentHP > amount)
                 {
                     GameManager.instance.playerHpcount.currentHP -= amount;
-                }else
+                    FireBlast.UnPause();
+                }
+                else
                 {
                     fireEffect.Stop();
+                    FireBlast.Pause();
                 }
                 
+
+            }
+
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                fireEffect.Stop();
+                FireBlast.Pause();
+
             }
             /*
             if (Input.GetMouseButtonDown(0))
@@ -83,11 +101,7 @@ public class playerattack : MonoBehaviour
             }
             */
 
-            else if (Input.GetMouseButtonUp(0))
-            {
-                fireEffect.Stop();
-                
-            }
+
             /*
             if (atktime >= 0)
             {

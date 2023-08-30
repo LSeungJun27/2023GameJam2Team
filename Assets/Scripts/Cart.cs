@@ -8,17 +8,24 @@ public class Cart : MonoBehaviour
     public GameObject ui;
     private Camera _camera;
     public hpcount hpcount;
+    public FireEffectController fireEffectController;
+
+    private float _targetHp;
 
     private void Start()
     {
         _camera = Camera.main;
         
         ui.SetActive(false);
-        
+
+        _targetHp= hpcount.currentHP / hpcount.maxHP;
+
     }
 
     private void Update()
     {
+        _targetHp=hpcount.currentHP/hpcount.maxHP;
+        fireEffectController.growth = math.lerp(fireEffectController.growth, _targetHp,1*Time.deltaTime);
         if (Input.GetButton("Interact")&&ui.activeSelf)
         {
             var playerHpcount = GameManager.instance.playerHpcount;
@@ -26,11 +33,6 @@ public class Cart : MonoBehaviour
             {
                 hpcount.currentHP += 20*Time.deltaTime;
                 playerHpcount.currentHP-= 20*Time.deltaTime;
-            }
-            else
-            {
-                hpcount.currentHP += playerHpcount.currentHP;
-                playerHpcount.currentHP= 0;
             }
             if (hpcount.currentHP > hpcount.maxHP)
             {
@@ -47,7 +49,7 @@ public class Cart : MonoBehaviour
     private void LateUpdate()
     {
         //ui.transform.LookAt(_camera);
-        ui.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up*0.5f);
+        ui.transform.position = _camera.WorldToScreenPoint(gameObject.transform.position+Vector3.up*1f);
     }
 
     private void OnTriggerEnter(Collider other)
