@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour
             _camera = Camera.main;
             brain = _camera.GetComponent<CinemachineBrain>();
             cartHpcount.gameObject.SetActive(false);
-            BestScroetxt.transform.parent.gameObject.SetActive(true);
+            Scoretxt.gameObject.SetActive(false);
             onStart.AddListener(() =>
             {
                 gameStart = true;
-                BestScroetxt.transform.parent.gameObject.SetActive(true);
+                Scoretxt.gameObject.SetActive(true);
                 cartHpcount.gameObject.SetActive(true);
             });
             onEnemyDie.AddListener(() =>
