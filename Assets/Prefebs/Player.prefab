@@ -1073,7 +1073,12 @@ PrefabInstance:
     - target: {fileID: 3164810415294802420, guid: 09d0a2ca30c3ba24f802be11bbb3db17,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084682703784666627, guid: 09d0a2ca30c3ba24f802be11bbb3db17,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7143943289257846668, guid: 09d0a2ca30c3ba24f802be11bbb3db17,
         type: 3}
@@ -1139,6 +1144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Amount
+      objectReference: {fileID: 0}
+    - target: {fileID: 7926609139801533085, guid: 09d0a2ca30c3ba24f802be11bbb3db17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09d0a2ca30c3ba24f802be11bbb3db17, type: 3}
@@ -1358,20 +1368,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3698729766910348316}
     m_Modifications:
+    - target: {fileID: 3923215683467365964, guid: d32f9a1dd07be844f84ee48abc14a9bf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923215683467365964, guid: d32f9a1dd07be844f84ee48abc14a9bf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923215683467365964, guid: d32f9a1dd07be844f84ee48abc14a9bf,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3981056101270397619, guid: d32f9a1dd07be844f84ee48abc14a9bf,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3981056101270397619, guid: d32f9a1dd07be844f84ee48abc14a9bf,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6561609321133601931, guid: d32f9a1dd07be844f84ee48abc14a9bf,
         type: 3}
       propertyPath: m_Name
       value: Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561609321133601931, guid: d32f9a1dd07be844f84ee48abc14a9bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6561609321133601934, guid: d32f9a1dd07be844f84ee48abc14a9bf,
         type: 3}

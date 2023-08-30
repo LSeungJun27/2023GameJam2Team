@@ -31,7 +31,12 @@ public class GameManager : MonoBehaviour
             instance = this;
             _camera = Camera.main;
             brain = _camera.GetComponent<CinemachineBrain>();
-            onStart.AddListener(() => { gameStart = true;});
+            cartHpcount.gameObject.SetActive(false);
+            onStart.AddListener(() =>
+            {
+                gameStart = true;
+                cartHpcount.gameObject.SetActive(true);
+            });
             onEnemyDie.AddListener(() =>
             {
                 Kill();

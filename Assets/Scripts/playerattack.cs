@@ -28,6 +28,7 @@ public class playerattack : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.gameStart) return;
         var amount = 10 * Time.deltaTime;
         if (youcanatk == 1)
         {
