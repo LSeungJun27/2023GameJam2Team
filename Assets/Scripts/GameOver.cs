@@ -36,7 +36,7 @@ public class GameOver : MonoBehaviour
 
     public void StartNewGame()
     {
-        SceneManager.LoadScene("Park 2");
+        SceneManager.LoadScene("Main");
     }
 
 }
