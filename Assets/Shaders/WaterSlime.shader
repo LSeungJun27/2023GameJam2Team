@@ -4,6 +4,7 @@ Shader "Unlit/WaterSlime"
     {
         [HDR] [MainColor] _BaseColor("BaseColor", Color) = (1,1,1,1)
         [HDR] _RimColor("RimColor",Color) = (1,1,1,1)
+        _DistortionStrength("DistortionStrength",Float) = 1.0
         //[MainTexture] _BaseMap("BaseMap", 2D) = "white" {}
     }
 
@@ -44,11 +45,12 @@ Shader "Unlit/WaterSlime"
             //TEXTURE2D(_BaseMap);
             //SAMPLER(sampler_BaseMap);
             
-            //CBUFFER_START(UnityPerMaterial)
+            CBUFFER_START(UnityPerMaterial)
             //float4 _BaseMap_ST;
             half4 _BaseColor;
             half4 _RimColor;
-            //CBUFFER_END
+            float _DistortionStrength;
+            CBUFFER_END
             float2 GradientNoiseDir(float2 p)
             {
                 p = p % 289;
@@ -75,7 +77,7 @@ Shader "Unlit/WaterSlime"
 
                 float positionDistortion = min(0,-0.04+0.05f*GradientNoise(input.uv+_Time*1.25));
                 
-                output.positionHCS = TransformObjectToHClip(input.positionOS.xyz+input.normalOS*positionDistortion);
+                output.positionHCS = TransformObjectToHClip(input.positionOS.xyz+input.normalOS*positionDistortion*_DistortionStrength);
                 output.uv = input.uv;//TRANSFORM_TEX(input.uv, _BaseMap);
                 output.normalWS = TransformObjectToWorldNormal(input.normalOS);
                 output.viewDir = GetWorldSpaceViewDir(TransformObjectToWorld(input.positionOS));
