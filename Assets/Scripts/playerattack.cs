@@ -57,8 +57,14 @@ public class playerattack : MonoBehaviour
                 if (GameManager.instance.playerHpcount.currentHP > amount)
                 {
                     GameManager.instance.playerHpcount.currentHP -= amount;
+                    FireBlast.UnPause();
                 }
-                FireBlast.UnPause();
+                else
+                {
+                    fireEffect.Stop();
+                    FireBlast.Pause();
+                }
+                
 
             }
 

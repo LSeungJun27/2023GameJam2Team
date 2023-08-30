@@ -34,11 +34,6 @@ public class Cart : MonoBehaviour
                 hpcount.currentHP += 20*Time.deltaTime;
                 playerHpcount.currentHP-= 20*Time.deltaTime;
             }
-            else
-            {
-                hpcount.currentHP += playerHpcount.currentHP;
-                playerHpcount.currentHP= 0;
-            }
             if (hpcount.currentHP > hpcount.maxHP)
             {
                 playerHpcount.currentHP += hpcount.currentHP - hpcount.maxHP;
