@@ -27,6 +27,7 @@ public class GameOver : MonoBehaviour
 
     public void SetGameOver()
     {
+        GameManager.instance.gameStart = false;
         if (GameOverUI != null)
         {
             GameOverUI.SetActive(true);
