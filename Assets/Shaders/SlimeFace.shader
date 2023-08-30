@@ -3,6 +3,7 @@ Shader "Unlit/SlimeFace"
       Properties
     {
         [MainTexture] _BaseMap("BaseMap", 2D) = "white" {}
+        _DistortionStrength("DistortionStrength",Float) = 1.0
     }
 
     // Universal Render Pipeline subshader. If URP is installed this will be used.
@@ -19,8 +20,8 @@ Shader "Unlit/SlimeFace"
             
             
             HLSLPROGRAM
-            #pragma vertex WaterSlimePassVertex
-            #pragma fragment WaterSlimePassFragment
+            #pragma vertex SlimeFacePassVertex
+            #pragma fragment SlimeFacePassFragment
             
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
@@ -43,6 +44,7 @@ Shader "Unlit/SlimeFace"
             
             CBUFFER_START(UnityPerMaterial)
             float4 _BaseMap_ST;
+            float _DistortionStrength;
             CBUFFER_END
 
             float2 GradientNoiseDir(float2 p)
@@ -66,17 +68,17 @@ Shader "Unlit/SlimeFace"
                 return lerp(lerp(d00, d01, fp.y), lerp(d10, d11, fp.y), fp.x)+0.5f;
             }
             
-            Varyings WaterSlimePassVertex(Attributes input)
+            Varyings SlimeFacePassVertex(Attributes input)
             {
                 Varyings output;
                 float positionDistortion = min(0,-0.04+0.05f*GradientNoise(input.uv+_Time*1.25))+0.0025f;
-                output.positionHCS = TransformObjectToHClip(input.positionOS.xyz+input.normalOS*positionDistortion);
+                output.positionHCS = TransformObjectToHClip(input.positionOS.xyz+input.normalOS*positionDistortion*_DistortionStrength);
                 output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
 
                 return output;
             }
 
-            half4 WaterSlimePassFragment(Varyings input) : SV_Target
+            half4 SlimeFacePassFragment(Varyings input) : SV_Target
             {
                 half4 main = SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,input.uv);
                 clip(main.a-0.9875f);

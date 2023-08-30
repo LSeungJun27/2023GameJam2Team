@@ -106,6 +106,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6988539274986778240}
     m_Modifications:
+    - target: {fileID: 1400266191966413589, guid: dd4a3512cd18d704a9aefde9dee00758,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400266191966413589, guid: dd4a3512cd18d704a9aefde9dee00758,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6561609321133601931, guid: dd4a3512cd18d704a9aefde9dee00758,
         type: 3}
       propertyPath: m_Name
@@ -116,6 +126,11 @@ PrefabInstance:
       propertyPath: amount
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 6561609321133601933, guid: dd4a3512cd18d704a9aefde9dee00758,
+        type: 3}
+      propertyPath: GetItem
+      value: 
+      objectReference: {fileID: 6236753589360356745}
     - target: {fileID: 6561609321133601934, guid: dd4a3512cd18d704a9aefde9dee00758,
         type: 3}
       propertyPath: m_RootOrder
@@ -176,6 +191,12 @@ PrefabInstance:
 --- !u!4 &2228257207669864978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6561609321133601934, guid: dd4a3512cd18d704a9aefde9dee00758,
+    type: 3}
+  m_PrefabInstance: {fileID: 5036107360583732892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6236753589360356745 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1400266191966413589, guid: dd4a3512cd18d704a9aefde9dee00758,
     type: 3}
   m_PrefabInstance: {fileID: 5036107360583732892}
   m_PrefabAsset: {fileID: 0}
