@@ -15,5 +15,12 @@ public class MainUI : MonoBehaviour
             GameManager.instance.inGameCam.gameObject.SetActive(true);
             
         };
+        
+        UIDocument.rootVisualElement.Q<Button>(className:"btn_reset").clicked += () =>
+        {
+            Debug.Log("최고 점수 리셋됨");
+            PlayerPrefs.SetInt("Best", 0);
+            GameManager.instance.bestscore=0;
+        };
     }
 }

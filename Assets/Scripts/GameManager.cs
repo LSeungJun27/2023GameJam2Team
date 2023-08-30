@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     //점수
     public Text BestScroetxt;
-    private int bestscore = 0;
+    public int bestscore = 0;
     private string KeyName = "Best";
     [SerializeField] public Text Scoretxt;
     private float YouScore;
@@ -36,9 +36,11 @@ public class GameManager : MonoBehaviour
             _camera = Camera.main;
             brain = _camera.GetComponent<CinemachineBrain>();
             cartHpcount.gameObject.SetActive(false);
+            BestScroetxt.transform.parent.gameObject.SetActive(true);
             onStart.AddListener(() =>
             {
                 gameStart = true;
+                BestScroetxt.transform.parent.gameObject.SetActive(true);
                 cartHpcount.gameObject.SetActive(true);
             });
             onEnemyDie.AddListener(() =>
@@ -64,7 +66,7 @@ public class GameManager : MonoBehaviour
     //점수
     public void ScoreCount()
     {
-        YouScore += Time.deltaTime;
+        if (GameManager.instance.gameStart) YouScore += Time.deltaTime;
         int Ks = GetComponent<GameManager>().KillScore;
         RealScore = Mathf.FloorToInt(YouScore) + KillScore;
         if (RealScore > bestscore)
