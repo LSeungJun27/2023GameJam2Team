@@ -30,7 +30,7 @@ public class FireEffectController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.rotation = quaternion.identity;
         UpdateEffect();
@@ -75,6 +75,6 @@ public class FireEffectController : MonoBehaviour
     private void OnValidate()
     {
         Start();
-        Update();
+        FixedUpdate();
     }
 }

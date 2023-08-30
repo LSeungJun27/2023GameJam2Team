@@ -17,25 +17,21 @@ public class Item : MonoBehaviour
         _camera = Camera.main;
         
         ui.SetActive(false);
-        GetItem = GameObject.Find("GetItem").GetComponent<AudioSource>();
-        GetItem.Stop();
+        //GetItem = GameObject.Find("GetItem").GetComponent<AudioSource>();
+        //GetItem.Stop();
     }
 
     private void Update()
     {
-        if (GetItem.isPlaying)
-        {
-            GetItem.Stop();
-        }
         if (Input.GetButtonDown("Interact")&&ui.activeSelf)
         {
             //ItemManager.instance.amount += amount;
             GameManager.instance.playerHpcount.currentHP += amount;
             if (GameManager.instance.playerHpcount.currentHP > GameManager.instance.playerHpcount.maxHP)
                 GameManager.instance.playerHpcount.currentHP=GameManager.instance.playerHpcount.maxHP;
+            GetItem.enabled = true;
+            GetItem.gameObject.transform.parent = null;
             Destroy(transform.parent.gameObject);
-            
-            GetItem.Play();
             Debug.Log("pickup");
         }
     }
