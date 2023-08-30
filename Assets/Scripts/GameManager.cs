@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
-    {
+{
         public static GameManager instance;
         private Camera _camera;
         public CinemachineBrain brain;
@@ -18,7 +19,13 @@ public class GameManager : MonoBehaviour
         public bool gameStart = false;
         public hpcount playerHpcount;
         public hpcount cartHpcount;
-        
+
+    [SerializeField] public Text Scoretxt;
+    private float YouScore;
+    private int RealScore;
+    private int KillScore = 0;
+    public int killbonus = 2;
+
         private void Awake()
         {
             instance = this;
@@ -27,24 +34,38 @@ public class GameManager : MonoBehaviour
             onStart.AddListener(() => { gameStart = true;});
             onEnemyDie.AddListener(() =>
             {
-                Debug.Log("적 사망");
-                //여기에 점수 관련 로직
+                Kill();
             });
         }
         
+    public void Kill()
+    {
+        KillScore += killbonus;
+        //Debug.Log("적 사망");
+        //Debug.Log(KillScore);
+    }
+
+    public void ScoreCount()
+    {
+        //점수
+        YouScore += Time.deltaTime;
+        int Ks = GetComponent<GameManager>().KillScore;
+        RealScore = Mathf.FloorToInt(YouScore) + KillScore;
+        Scoretxt.text = "Score : " + RealScore.ToString();
+    }
         
 
         // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+    void Start()
+    {
+            YouScore = 0;
+    }
 
         // Update is called once per frame
-        void Update()
-        {
-        
-        }
-    } 
+    void Update()
+    {
+        ScoreCount();
+    }
+} 
 
 
